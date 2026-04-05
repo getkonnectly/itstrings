@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Strings — Specialized Cloud & AI Talent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1f4b;
+    --navy2: #1a3365;
+    --blue: #1652c8;
+    --blue-light: #e8eefb;
+    --blue-mid: #c5d5f5;
+    --accent: #0ea5e9;
+    --teal: #0d9488;
+    --ink: #0f172a;
+    --ink2: #1e293b;
+    --muted: #64748b;
+    --muted2: #94a3b8;
+    --border: #e2e8f0;
+    --border2: #cbd5e1;
+    --surface: #f8fafc;
+    --surface2: #f1f5f9;
+    --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #fff;
+    color: var(--ink);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 64px; height: 68px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800; font-size: 20px; letter-spacing: -0.5px;
+    color: var(--navy); text-decoration: none;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--muted);
+    text-decoration: none; transition: color 0.18s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--navy); color: #fff;
+    font-size: 14px; font-weight: 600;
+    padding: 10px 22px; border-radius: 7px; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding: 140px 64px 80px;
+    background: #fff; position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  .hero-bg-shape {
+    position: absolute; top: 0; right: 0;
+    width: 52%; height: 100%;
+    background: linear-gradient(135deg, var(--blue-light) 0%, #dbeafe 50%, #eff6ff 100%);
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+  .hero-dots {
+    position: absolute; top: 80px; right: 56px;
+    width: 260px; height: 260px;
+    background-image: radial-gradient(circle, var(--blue-mid) 1.5px, transparent 1.5px);
+    background-size: 22px 22px; opacity: 0.55; z-index: 1;
+  }
+  .hero-left { position: relative; z-index: 2; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-light); border: 1px solid var(--blue-mid);
+    border-radius: 100px; padding: 6px 16px 6px 10px;
+    font-size: 13px; font-weight: 600; color: var(--blue);
+    margin-bottom: 32px;
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.08); }
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500; font-size: clamp(44px, 5.2vw, 70px);
+    line-height: 1.08; letter-spacing: -1.5px;
+    color: var(--navy); margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic; font-weight: 300; color: var(--blue);
+  }
+  .hero-sub {
+    font-size: 17px; font-weight: 400; color: var(--muted);
+    line-height: 1.75; max-width: 460px; margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy); color: #fff;
+    font-size: 15px; font-weight: 600;
+    padding: 14px 28px; border-radius: 8px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--navy2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(11,31,75,0.18); }
+  .btn-ghost {
+    color: var(--ink2); font-size: 15px; font-weight: 500;
+    padding: 14px 24px; border-radius: 8px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--border2); transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--navy); color: var(--navy); background: var(--blue-light); }
+  .hero-right { position: relative; z-index: 2; }
+
+  .hero-visual {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 18px; padding: 28px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04), 0 20px 50px -10px rgba(11,31,75,0.12);
+  }
+  .hv-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .hv-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .hv-count { font-size: 13px; font-weight: 600; color: var(--blue); background: var(--blue-light); padding: 3px 10px; border-radius: 20px; }
+  .talent-row { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+  .talent-row:last-of-type { border-bottom: none; }
+  .tr-av {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; flex-shrink: 0;
+  }
+  .tr-info { flex: 1; }
+  .tr-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .tr-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .tr-badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .tbg-blue { background: var(--blue-light); color: var(--blue); }
+  .tbg-teal { background: #ccfbf1; color: #0d9488; }
+  .tbg-indigo { background: #e0e7ff; color: #4338ca; }
+  .hv-footer { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .hv-stat { text-align: center; }
+  .hv-stat-num { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: -1px; }
+  .hv-stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .hv-divider { width: 1px; height: 34px; background: var(--border); }
+
+  /* MARQUEE */
+  .marquee-strip { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 15px 0; background: var(--surface); }
+  .marquee-inner { display: flex; gap: 64px; animation: marquee 35s linear infinite; white-space: nowrap; width: max-content; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted2); display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+  .marquee-item .sep { width: 4px; height: 4px; border-radius: 50%; background: var(--blue-mid); }
+
+  /* STATS */
+  .stats-section {
+    padding: 70px 64px; background: var(--navy);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .stat-item { padding: 28px 40px; border-right: 1px solid rgba(255,255,255,0.1); text-align: center; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Fraunces', serif; font-size: 50px; font-weight: 600; line-height: 1; letter-spacing: -2px; color: #fff; margin-bottom: 10px; }
+  .stat-num sup { font-size: 26px; letter-spacing: -1px; color: #93c5fd; }
+  .stat-label { font-size: 14px; color: rgba(255,255,255,0.5); font-weight: 400; }
+
+  /* SECTION COMMONS */
+  section.padded { padding: 110px 64px; }
+  .section-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+  .section-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(32px, 3.5vw, 48px); line-height: 1.12; letter-spacing: -1px; color: var(--navy); margin-bottom: 16px; }
+  .section-title em { font-style: italic; font-weight: 300; color: var(--blue); }
+  .section-sub { font-size: 16px; font-weight: 400; color: var(--muted); line-height: 1.75; max-width: 500px; }
+
+  /* SERVICES */
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 52px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .service-card {
+    background: #fff; border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 34px 30px; transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--accent)); opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover { border-color: var(--blue-mid); box-shadow: 0 8px 30px rgba(22,82,200,0.1); transform: translateY(-3px); }
+  .service-card:hover::before { opacity: 1; }
+  .svc-icon { width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; }
+  .si-blue { background: var(--blue-light); }
+  .si-teal { background: #ccfbf1; }
+  .si-indigo { background: #e0e7ff; }
+  .si-amber { background: #fef3c7; }
+  .si-purple { background: #f3e8ff; }
+  .si-green { background: #dcfce7; }
+  .service-card h3 { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.3px; }
+  .service-card p { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 20px; }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .svc-tag { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+  /* HOW IT WORKS */
+  .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .steps { display: flex; flex-direction: column; margin-top: 36px; }
+  .step { display: flex; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 600; color: var(--blue-mid); flex-shrink: 0; width: 32px; line-height: 1; margin-top: 2px; }
+  .step-body h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .step-body p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+  .how-visual { background: var(--surface); border: 1.5px solid var(--border); border-radius: 20px; padding: 32px; }
+  .process-bar { display: flex; align-items: center; margin-bottom: 28px; }
+  .pb-step { flex: 1; text-align: center; }
+  .pb-circle { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin: 0 auto 7px; }
+  .pb-active { background: var(--navy); color: #fff; }
+  .pb-done { background: #22c55e; color: #fff; }
+  .pb-pending { background: var(--border); color: var(--muted2); }
+  .pb-label { font-size: 11px; color: var(--muted2); font-weight: 500; }
+  .pb-line { flex: 0 0 40px; height: 2px; background: var(--border); }
+  .pb-line.done { background: #22c55e; }
+  .match-card { background: #fff; border: 1.5px solid var(--border); border-radius: 11px; padding: 16px 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 13px; }
+  .mc-av { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .mc-info { flex: 1; }
+  .mc-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .mc-role { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .mc-score { font-size: 13px; font-weight: 700; color: var(--teal); display: flex; flex-direction: column; align-items: center; }
+  .mc-score span { font-size: 10px; font-weight: 500; color: var(--muted2); }
+  .time-tag { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 7px 13px; font-size: 13px; font-weight: 600; color: #16a34a; margin-top: 4px; }
+
+  /* TECH */
+  .tech-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-top: 52px; }
+  .tech-chip { background: #fff; border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 10px; text-align: center; transition: all 0.22s; }
+  .tech-chip:hover { border-color: var(--blue-mid); box-shadow: 0 4px 16px rgba(22,82,200,0.08); transform: translateY(-2px); }
+  .tc-icon { font-size: 24px; display: block; margin-bottom: 8px; }
+  .tc-name { font-size: 11px; font-weight: 600; color: var(--muted); }
+
+  /* INDUSTRIES */
+  .industries-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 52px; }
+  .industry-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 30px 26px; transition: all 0.25s; }
+  .industry-card:hover { border-color: var(--blue-mid); box-shadow: 0 6px 24px rgba(22,82,200,0.08); transform: translateY(-2px); }
+  .ic-icon { font-size: 22px; margin-bottom: 16px; width: 48px; height: 48px; background: var(--blue-light); border-radius: 11px; display: flex; align-items: center; justify-content: center; }
+  .industry-card h4 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .industry-card p { font-size: 14px; line-height: 1.7; color: var(--muted); }
+
+  /* TESTIMONIALS */
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 52px; }
+  .testi-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 30px; }
+  .t-stars { color: #f59e0b; font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+  .t-quote { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 400; font-style: italic; line-height: 1.7; color: var(--ink2); margin-bottom: 22px; }
+  .t-author { display: flex; align-items: center; gap: 12px; }
+  .t-av { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .t-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .t-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* CTA */
+  .cta-band {
+    margin: 0 64px 100px; background: var(--navy);
+    border-radius: 20px; padding: 90px 80px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-band::before { content: ''; position: absolute; top: -120px; right: -120px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%); }
+  .cta-band h2 { font-family: 'Fraunces', serif; font-size: clamp(34px, 4vw, 52px); font-weight: 500; letter-spacing: -1.5px; color: #fff; margin-bottom: 16px; position: relative; z-index: 1; line-height: 1.12; }
+  .cta-band h2 em { font-style: italic; font-weight: 300; color: #93c5fd; }
+  .cta-band p { font-size: 16px; color: rgba(255,255,255,0.55); margin-bottom: 42px; position: relative; z-index: 1; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; position: relative; z-index: 1; flex-wrap: wrap; }
+  .btn-white { background: #fff; color: var(--navy); font-size: 15px; font-weight: 700; padding: 14px 30px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+  .btn-white:hover { background: var(--blue-light); transform: translateY(-2px); }
+  .btn-outline-white { background: transparent; color: rgba(255,255,255,0.75); font-size: 15px; font-weight: 500; padding: 14px 28px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid rgba(255,255,255,0.22); transition: all 0.2s; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+  /* FOOTER */
+  footer { padding: 60px 64px 40px; border-top: 1px solid var(--border); background: var(--surface); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 52px; }
+  .footer-brand { font-weight: 800; font-size: 20px; color: var(--navy); margin-bottom: 14px; }
+  .footer-brand span { color: var(--blue); }
+  .footer-desc { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 20px; }
+  .footer-col h5 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted2); margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.18s; }
+  .footer-links a:hover { color: var(--ink); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted2); }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 110px 20px 60px; grid-template-columns: 1fr; }
+    .hero-bg-shape, .hero-dots { display: none; }
+    section.padded { padding: 72px 20px; }
+    .stats-section { grid-template-columns: repeat(2, 1fr); padding: 50px 20px; }
+    .services-grid, .industries-grid, .testi-grid { grid-template-columns: 1fr; }
+    .how-grid { grid-template-columns: 1fr; gap: 48px; }
+    .tech-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .cta-band { margin: 0 20px 72px; padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">IT<span>Strings</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#technologies">Technologies</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Talent →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="live-dot"></span>Actively placing Cloud & AI specialists</div>
+    <h1>The right talent<br>for the <em>AI era.</em></h1>
+    <p class="hero-sub">IT Strings connects forward-thinking companies with elite engineers, architects, and specialists in Cloud and Artificial Intelligence — faster than you thought possible.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start Hiring →</a>
+      <a href="#services" class="btn-ghost">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hv-header">
+        <div class="hv-title">Matched Talent</div>
+        <div class="hv-count">3 ready now</div>
+      </div>
+      <div class="talent-row">
+        <div class="tr-av" style="background:#dbeafe;color:#1652c8;">AK</div>
+        <div class="tr-info"><div class="tr-name">Ananya K.</div><div class="tr-role">Senior ML Engineer · 8 yrs</div></div>
+        <div class="tr-badge tbg-blue">AWS ML</div>
+      </div>
+      <div class="talent-row">
+        <div class="tr-av" style="background:#ccfbf1;color:#0d9488;">RS</div>
+        <div class="tr-info"><div class="tr-name">Rohan S.</div><div class="tr-role">Cloud Architect · GCP Certified</div></div>
+        <div class="tr-badge tbg-teal">Available</div>
+      </div>
+      <div class="talent-row">
+        <div class="tr-av" style="background:#e0e7ff;color:#4338ca;">MP</div>
+        <div class="tr-info"><div class="tr-name">Mei P.</div><div class="tr-role">GenAI / LLM Specialist · 5 yrs</div></div>
+        <div class="tr-badge tbg-indigo">GenAI</div>
+      </div>
+      <div class="hv-footer">
+        <div class="hv-stat"><div class="hv-stat-num">48h</div><div class="hv-stat-label">Avg. shortlist time</div></div>
+        <div class="hv-divider"></div>
+        <div class="hv-stat"><div class="hv-stat-num">98%</div><div class="hv-stat-label">Satisfaction rate</div></div>
+        <div class="hv-divider"></div>
+        <div class="hv-stat"><div class="hv-stat-num">500+</div><div class="hv-stat-label">Experts placed</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <div class="marquee-item"><span class="sep"></span>AWS Architects</div>
+    <div class="marquee-item"><span class="sep"></span>Azure Engineers</div>
+    <div class="marquee-item"><span class="sep"></span>ML Engineers</div>
+    <div class="marquee-item"><span class="sep"></span>LLM Specialists</div>
+    <div class="marquee-item"><span class="sep"></span>GCP Experts</div>
+    <div class="marquee-item"><span class="sep"></span>DevSecOps</div>
+    <div class="marquee-item"><span class="sep"></span>Data Scientists</div>
+    <div class="marquee-item"><span class="sep"></span>AI/ML Ops</div>
+    <div class="marquee-item"><span class="sep"></span>Kubernetes</div>
+    <div class="marquee-item"><span class="sep"></span>GenAI Developers</div>
+    <div class="marquee-item"><span class="sep"></span>AWS Architects</div>
+    <div class="marquee-item"><span class="sep"></span>Azure Engineers</div>
+    <div class="marquee-item"><span class="sep"></span>ML Engineers</div>
+    <div class="marquee-item"><span class="sep"></span>LLM Specialists</div>
+    <div class="marquee-item"><span class="sep"></span>GCP Experts</div>
+    <div class="marquee-item"><span class="sep"></span>DevSecOps</div>
+    <div class="marquee-item"><span class="sep"></span>Data Scientists</div>
+    <div class="marquee-item"><span class="sep"></span>AI/ML Ops</div>
+    <div class="marquee-item"><span class="sep"></span>Kubernetes</div>
+    <div class="marquee-item"><span class="sep"></span>GenAI Developers</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stat-item fade-up"><div class="stat-num">500<sup>+</sup></div><div class="stat-label">Specialists Placed</div></div>
+  <div class="stat-item fade-up" style="transition-delay:0.08s"><div class="stat-num">48<sup>h</sup></div><div class="stat-label">Time to First Match</div></div>
+  <div class="stat-item fade-up" style="transition-delay:0.16s"><div class="stat-num">98<sup>%</sup></div><div class="stat-label">Client Satisfaction</div></div>
+  <div class="stat-item fade-up" style="transition-delay:0.24s"><div class="stat-num">15<sup>+</sup></div><div class="stat-label">Tech Domains Covered</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="padded" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Deep specialization<br>across <em>every layer.</em></h2>
+    </div>
+    <p class="section-sub">From cloud infrastructure to bleeding-edge AI, we source talent already operating at the frontier.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="svc-icon si-blue">☁️</div>
+      <h3>Cloud Architecture</h3>
+      <p>Architects who design resilient, scalable cloud-native systems across AWS, Azure, and GCP — from greenfield builds to complex migrations.</p>
+      <div class="svc-tags"><span class="svc-tag">AWS</span><span class="svc-tag">Azure</span><span class="svc-tag">GCP</span><span class="svc-tag">Multi-Cloud</span></div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.08s">
+      <div class="svc-icon si-teal">🤖</div>
+      <h3>AI / ML Engineering</h3>
+      <p>Machine learning engineers and data scientists who build, train, and deploy production-grade AI systems at scale.</p>
+      <div class="svc-tags"><span class="svc-tag">PyTorch</span><span class="svc-tag">TensorFlow</span><span class="svc-tag">MLflow</span><span class="svc-tag">Vertex AI</span></div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.16s">
+      <div class="svc-icon si-indigo">🧠</div>
+      <h3>Generative AI</h3>
+      <p>Specialists in LLMs, RAG pipelines, agents, and fine-tuning — from prompt engineering to full-stack GenAI product development.</p>
+      <div class="svc-tags"><span class="svc-tag">LangChain</span><span class="svc-tag">OpenAI</span><span class="svc-tag">RAG</span><span class="svc-tag">Agents</span></div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.06s">
+      <div class="svc-icon si-amber">🔧</div>
+      <h3>DevSecOps & Platform</h3>
+      <p>Engineers who build CI/CD pipelines, IaC, and security guardrails so your teams ship fast without breaking things.</p>
+      <div class="svc-tags"><span class="svc-tag">Terraform</span><span class="svc-tag">Kubernetes</span><span class="svc-tag">ArgoCD</span><span class="svc-tag">GitOps</span></div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.12s">
+      <div class="svc-icon si-purple">📊</div>
+      <h3>Data Engineering</h3>
+      <p>Data platform engineers who build the pipelines and lakehouses powering real-time analytics and AI training workloads.</p>
+      <div class="svc-tags"><span class="svc-tag">Spark</span><span class="svc-tag">dbt</span><span class="svc-tag">Snowflake</span><span class="svc-tag">Databricks</span></div>
+    </div>
+    <div class="service-card fade-up" style="transition-delay:0.18s">
+      <div class="svc-icon si-green">🛡️</div>
+      <h3>Cloud Security</h3>
+      <p>Security architects specializing in cloud-native security posture, zero-trust architecture, and compliance frameworks.</p>
+      <div class="svc-tags"><span class="svc-tag">Zero-Trust</span><span class="svc-tag">CSPM</span><span class="svc-tag">SOC 2</span><span class="svc-tag">ISO 27001</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="padded" id="how" style="background:var(--surface);">
+  <div class="how-grid">
+    <div>
+      <div class="section-eyebrow">Our Process</div>
+      <h2 class="section-title">From brief to<br><em>brilliant hire.</em></h2>
+      <p class="section-sub">We've stripped all the friction from technical hiring so you can focus on building.</p>
+      <div class="steps">
+        <div class="step fade-up"><div class="step-num">1</div><div class="step-body"><h4>Tell us what you need</h4><p>A 30-minute discovery call. We go deep on your tech stack, team culture, and the exact skills that will move the needle.</p></div></div>
+        <div class="step fade-up" style="transition-delay:0.1s"><div class="step-num">2</div><div class="step-body"><h4>We match from our vetted network</h4><p>Our talent pool is pre-screened through technical assessments, reference checks, and domain-specific interviews. Signal, not noise.</p></div></div>
+        <div class="step fade-up" style="transition-delay:0.18s"><div class="step-num">3</div><div class="step-body"><h4>Review curated profiles in 48h</h4><p>You'll receive a shortlist of 3–5 candidates with detailed profiles and our rationale for each recommendation.</p></div></div>
+        <div class="step fade-up" style="transition-delay:0.26s"><div class="step-num">4</div><div class="step-body"><h4>Onboard — and we stay with you</h4><p>We facilitate contracts, onboarding logistics, and check in regularly. You're never left to figure it out alone.</p></div></div>
+      </div>
+    </div>
+    <div class="how-visual fade-up">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-bottom:22px;">Live Engagement · Acme Corp</div>
+      <div class="process-bar">
+        <div class="pb-step"><div class="pb-circle pb-done">✓</div><div class="pb-label">Brief</div></div>
+        <div class="pb-line done"></div>
+        <div class="pb-step"><div class="pb-circle pb-done">✓</div><div class="pb-label">Search</div></div>
+        <div class="pb-line done"></div>
+        <div class="pb-step"><div class="pb-circle pb-active">3</div><div class="pb-label">Shortlist</div></div>
+        <div class="pb-line"></div>
+        <div class="pb-step"><div class="pb-circle pb-pending">4</div><div class="pb-label">Hire</div></div>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.8px;">Your shortlist</div>
+      <div class="match-card">
+        <div class="mc-av" style="background:#dbeafe;color:#1652c8;">AK</div>
+        <div class="mc-info"><div class="mc-name">Ananya K. — Senior ML Engineer</div><div class="mc-role">8 yrs · AWS Certified · Production LLMs</div></div>
+        <div class="mc-score">96%<span>match</span></div>
+      </div>
+      <div class="match-card">
+        <div class="mc-av" style="background:#ccfbf1;color:#0d9488;">RS</div>
+        <div class="mc-info"><div class="mc-name">Rohan S. — Cloud Architect</div><div class="mc-role">GCP Certified · Multi-cloud · 10 yrs</div></div>
+        <div class="mc-score">93%<span>match</span></div>
+      </div>
+      <div class="match-card">
+        <div class="mc-av" style="background:#e0e7ff;color:#4338ca;">MP</div>
+        <div class="mc-info"><div class="mc-name">Mei P. — GenAI Specialist</div><div class="mc-role">RAG · Fine-tuning · Agents · 5 yrs</div></div>
+        <div class="mc-score">91%<span>match</span></div>
+      </div>
+      <div class="time-tag">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#16a34a" stroke-width="1.5"/><path d="M8 4.5V8l2.5 2" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Delivered in 38 hours
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section class="padded" id="technologies">
+  <div class="section-eyebrow">Technologies</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
+    <h2 class="section-title">The stack we<br><em>speak fluently.</em></h2>
+    <p class="section-sub">Every specialist in our network is battle-tested on the tools your team actually uses.</p>
+  </div>
+  <div class="tech-grid fade-up">
+    <div class="tech-chip"><span class="tc-icon">☁️</span><div class="tc-name">AWS</div></div>
+    <div class="tech-chip"><span class="tc-icon">🔷</span><div class="tc-name">Azure</div></div>
+    <div class="tech-chip"><span class="tc-icon">🌐</span><div class="tc-name">Google Cloud</div></div>
+    <div class="tech-chip"><span class="tc-icon">🐳</span><div class="tc-name">Docker</div></div>
+    <div class="tech-chip"><span class="tc-icon">⚙️</span><div class="tc-name">Kubernetes</div></div>
+    <div class="tech-chip"><span class="tc-icon">🏗️</span><div class="tc-name">Terraform</div></div>
+    <div class="tech-chip"><span class="tc-icon">🔥</span><div class="tc-name">PyTorch</div></div>
+    <div class="tech-chip"><span class="tc-icon">🧮</span><div class="tc-name">TensorFlow</div></div>
+    <div class="tech-chip"><span class="tc-icon">🤖</span><div class="tc-name">OpenAI</div></div>
+    <div class="tech-chip"><span class="tc-icon">🦜</span><div class="tc-name">LangChain</div></div>
+    <div class="tech-chip"><span class="tc-icon">❄️</span><div class="tc-name">Snowflake</div></div>
+    <div class="tech-chip"><span class="tc-icon">🧱</span><div class="tc-name">Databricks</div></div>
+    <div class="tech-chip"><span class="tc-icon">🌊</span><div class="tc-name">Apache Spark</div></div>
+    <div class="tech-chip"><span class="tc-icon">🚀</span><div class="tc-name">dbt</div></div>
+    <div class="tech-chip"><span class="tc-icon">🔄</span><div class="tc-name">Kafka</div></div>
+    <div class="tech-chip"><span class="tc-icon">🛡️</span><div class="tc-name">HashiCorp Vault</div></div>
+    <div class="tech-chip"><span class="tc-icon">📊</span><div class="tc-name">Grafana</div></div>
+    <div class="tech-chip"><span class="tc-icon">🔬</span><div class="tc-name">MLflow</div></div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="padded" id="industries" style="background:var(--surface);">
+  <div class="section-eyebrow">Industries</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
+    <h2 class="section-title">Trusted across<br><em>every sector.</em></h2>
+    <p class="section-sub">Cloud and AI challenges look different depending on your domain. We speak your language.</p>
+  </div>
+  <div class="industries-grid">
+    <div class="industry-card fade-up"><div class="ic-icon">🏦</div><h4>Financial Services</h4><p>Risk modelling, fraud detection AI, and cloud migration with compliance — FSI-grade talent who know the regulations and the stack.</p></div>
+    <div class="industry-card fade-up" style="transition-delay:0.08s"><div class="ic-icon">🏥</div><h4>Healthcare & Life Sciences</h4><p>HIPAA-aware cloud architects and clinical AI engineers building the infrastructure for next-generation patient outcomes.</p></div>
+    <div class="industry-card fade-up" style="transition-delay:0.16s"><div class="ic-icon">🛒</div><h4>Retail & E-Commerce</h4><p>Personalization engines, demand forecasting, and scalable commerce platforms handled by engineers who've seen peak traffic.</p></div>
+    <div class="industry-card fade-up" style="transition-delay:0.06s"><div class="ic-icon">🏭</div><h4>Manufacturing & Industrial</h4><p>IoT, edge computing, and predictive maintenance AI for the factories and supply chains of tomorrow.</p></div>
+    <div class="industry-card fade-up" style="transition-delay:0.12s"><div class="ic-icon">🚀</div><h4>Technology & SaaS</h4><p>Hyper-growth tech companies trust us to find the platform engineers and AI talent that let their products scale.</p></div>
+    <div class="industry-card fade-up" style="transition-delay:0.18s"><div class="ic-icon">📡</div><h4>Telecommunications</h4><p>Network intelligence, 5G cloud-native architecture, and real-time analytics at carrier scale.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="padded">
+  <div class="section-eyebrow">Client Stories</div>
+  <h2 class="section-title">Heard from teams<br>we've <em>helped build.</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card fade-up">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"IT Strings sent us three exceptional AWS architects within 48 hours. One of them is now our Head of Cloud Infrastructure. The best hiring experience we've had."</p>
+      <div class="t-author"><div class="t-av" style="background:#dbeafe;color:#1652c8;">JL</div><div><div class="t-name">James L.</div><div class="t-role">CTO, FinTech Scale-up</div></div></div>
+    </div>
+    <div class="testi-card fade-up" style="transition-delay:0.1s">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"We needed a GenAI specialist yesterday. IT Strings understood our exact requirements and matched us with someone who'd already shipped production RAG systems. Hired in 5 days."</p>
+      <div class="t-author"><div class="t-av" style="background:#ccfbf1;color:#0d9488;">SM</div><div><div class="t-name">Sarah M.</div><div class="t-role">VP Engineering, Healthcare AI</div></div></div>
+    </div>
+    <div class="testi-card fade-up" style="transition-delay:0.2s">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"What sets IT Strings apart is the technical depth of their screening. Every candidate they sent could actually do the job. No fluff, no wasted interviews."</p>
+      <div class="t-author"><div class="t-av" style="background:#fef3c7;color:#92400e;">DR</div><div><div class="t-name">David R.</div><div class="t-role">Director of Platform, E-Commerce</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="padded" id="about">
+  <div class="how-grid">
+    <div>
+      <div class="section-eyebrow">About Us</div>
+      <h2 class="section-title">Built by people who<br><em>know the stack.</em></h2>
+      <p class="section-sub" style="margin-bottom:32px;">IT Strings was founded by technologists and recruiters who got tired of watching brilliant companies waste months on bad-fit hires. We fused deep technical screening with a curated talent network — so you interview fewer people and hire better ones.</p>
+      <div class="steps">
+        <div class="step fade-up">
+          <div class="step-num" style="color:var(--blue);">→</div>
+          <div class="step-body"><h4>Technical-first vetting</h4><p>Every candidate is assessed by domain specialists before they ever reach your inbox. We evaluate real skills, not keyword lists.</p></div>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.1s">
+          <div class="step-num" style="color:var(--blue);">→</div>
+          <div class="step-body"><h4>Cloud & AI — exclusively</h4><p>We don't try to staff everything. Our singular focus on cloud infrastructure and artificial intelligence means we know the market better than anyone.</p></div>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.18s">
+          <div class="step-num" style="color:var(--blue);">→</div>
+          <div class="step-body"><h4>Partners, not vendors</h4><p>We stay involved through onboarding and beyond. If a placement isn't working, we make it right — guaranteed.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual fade-up" style="text-align:center;padding:48px 32px;">
+      <div style="font-size:48px;margin-bottom:20px;">🎯</div>
+      <div style="font-family:'Fraunces',serif;font-size:42px;font-weight:600;color:var(--navy);letter-spacing:-1.5px;margin-bottom:6px;">100%</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:32px;">Focused on Cloud & AI</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center;">
+        <div><div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--navy);letter-spacing:-1px;">6+</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Years in market</div></div>
+        <div><div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--navy);letter-spacing:-1px;">200+</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Companies served</div></div>
+        <div><div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--navy);letter-spacing:-1px;">15+</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Tech domains</div></div>
+        <div><div style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:var(--navy);letter-spacing:-1px;">48h</div><div style="font-size:12px;color:var(--muted);margin-top:4px;">Avg. shortlist</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band" id="contact">
+  <h2>Ready to hire <em>smarter?</em><br>Let's talk.</h2>
+  <p>Tell us about your open roles and we'll have a shortlist ready in 48 hours.</p>
+  <div class="cta-btns">
+    <a href="mailto:hello@itstrings.com" class="btn-white">Schedule a Call →</a>
+    <a href="mailto:talent@itstrings.com" class="btn-outline-white">Submit Your Role</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">IT<span>Strings</span></div>
+      <p class="footer-desc">Specialized talent acquisition for Cloud and AI technologies. Connecting visionary companies with engineers who define what's next.</p>
+      <div style="display:flex;gap:16px;">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" style="font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;">LinkedIn</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" style="font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;">Twitter</a>
+        <a href="mailto:hello@itstrings.com" style="font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;">Email</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul class="footer-links">
+        <li><a href="#services">Cloud Architecture</a></li>
+        <li><a href="#services">AI / ML Engineering</a></li>
+        <li><a href="#services">Generative AI</a></li>
+        <li><a href="#services">DevSecOps</a></li>
+        <li><a href="#services">Data Engineering</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="mailto:talent@itstrings.com">For Talent</a></li>
+        <li><a href="#technologies">Technologies</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul class="footer-links">
+        <li><a href="mailto:hello@itstrings.com">hello@itstrings.com</a></li>
+        <li><a href="#contact">Book a Call</a></li>
+        <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:talent@itstrings.com">Submit a Role</a></li>
+        <li><a href="#contact">Get in Touch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 IT Strings. All rights reserved.</span>
+    <span>Specialized Cloud & AI Talent</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) { e.preventDefault(); document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>
