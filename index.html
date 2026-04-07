@@ -397,6 +397,96 @@
   .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+  /* MODALS */
+  body.modal-open { overflow: hidden; }
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+    justify-content: center; align-items: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #fff; border-radius: 16px; width: 100%; max-width: 520px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.2); position: relative;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-progress { height: 4px; background: var(--border); border-radius: 16px 16px 0 0; overflow: hidden; }
+  .modal-progress-fill { height: 100%; border-radius: 4px; transition: width 0.35s ease; }
+  .modal-progress-fill.blue { background: linear-gradient(90deg, var(--blue), var(--accent)); }
+  .modal-progress-fill.green { background: linear-gradient(90deg, #22c55e, #0d9488); }
+  .modal-header { padding: 28px 32px 0; }
+  .modal-header h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; color: var(--navy); letter-spacing: -0.5px; margin-bottom: 6px; }
+  .modal-header p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; background: none; border: none;
+    cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center;
+    justify-content: center; border-radius: 8px; color: var(--muted);
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--surface); }
+  .modal-body { padding: 20px 32px; }
+  .modal-step { display: none; }
+  .modal-step.active { display: block; }
+  .modal-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .modal-card {
+    padding: 16px; border: 1.5px solid var(--border); border-radius: 10px;
+    cursor: pointer; transition: all 0.2s; text-align: center; background: #fff;
+  }
+  .modal-card:hover { border-color: var(--blue-mid); background: var(--surface); }
+  .modal-card.active { border-color: var(--blue); background: var(--blue-light); }
+  .modal-card-icon { font-size: 20px; margin-bottom: 6px; }
+  .modal-card-label { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .modal-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .modal-pill {
+    padding: 7px 16px; border: 1.5px solid var(--border); border-radius: 100px;
+    font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer;
+    transition: all 0.2s; background: #fff;
+  }
+  .modal-pill:hover { border-color: var(--blue-mid); }
+  .modal-pill.active { border-color: var(--blue); background: var(--blue-light); color: var(--blue); }
+  .modal-field { margin-bottom: 16px; }
+  .modal-field label { display: block; font-size: 13px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
+  .modal-input, .modal-textarea, .modal-select {
+    width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--ink);
+    outline: none; transition: border-color 0.2s; background: #fff;
+  }
+  .modal-input:focus, .modal-textarea:focus, .modal-select:focus { border-color: var(--blue); }
+  .modal-textarea { resize: vertical; min-height: 80px; }
+  .modal-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+  .upload-zone {
+    border: 2px dashed var(--border); border-radius: 10px; padding: 28px 20px;
+    text-align: center; cursor: pointer; transition: all 0.2s; margin-top: 8px;
+  }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--blue); background: var(--blue-light); }
+  .upload-zone p { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .upload-zone .uz-label { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .upload-progress { margin-top: 10px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; display: none; }
+  .upload-progress-fill { height: 100%; background: linear-gradient(90deg, #22c55e, #0d9488); border-radius: 3px; transition: width 0.2s; width: 0%; }
+  .upload-file-name { font-size: 12px; color: var(--teal); font-weight: 600; margin-top: 6px; display: none; }
+  .upload-error { font-size: 12px; color: #ef4444; margin-top: 6px; display: none; }
+  .modal-footer { padding: 0 32px 28px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .modal-btn-back {
+    background: none; border: none; font-size: 14px; font-weight: 500; color: var(--muted);
+    cursor: pointer; padding: 10px 16px; transition: color 0.2s;
+  }
+  .modal-btn-back:hover { color: var(--ink); }
+  .modal-btn-primary {
+    background: var(--navy); color: #fff; border: none; font-size: 14px; font-weight: 600;
+    padding: 12px 28px; border-radius: 8px; cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
+  }
+  .modal-btn-primary:hover { background: var(--navy2); }
+  .modal-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+  .modal-btn-primary.green { background: #16a34a; }
+  .modal-btn-primary.green:hover { background: #15803d; }
+  .modal-success { text-align: center; padding: 48px 32px; }
+  .modal-success svg { margin-bottom: 16px; }
+  .modal-success h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; color: var(--navy); margin-bottom: 8px; }
+  .modal-success p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .modal-or { text-align: center; font-size: 12px; color: var(--muted2); margin: 12px 0; text-transform: uppercase; letter-spacing: 1px; }
+  .modal-section-label { font-size: 12px; font-weight: 700; color: var(--muted2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; margin-top: 20px; }
+
   /* RESPONSIVE */
   @media (max-width: 960px) {
     nav { padding: 0 20px; height: 64px; }
@@ -427,8 +517,16 @@
     .services-header { flex-direction: column; align-items: flex-start; }
     .trust-bar { padding: 20px 20px; gap: 20px; }
     .trust-badges { gap: 12px; }
+    .modal-box { max-width: 100%; border-radius: 12px; }
+    .modal-header, .modal-body { padding-left: 20px; padding-right: 20px; }
+    .modal-footer { padding-left: 20px; padding-right: 20px; }
+    .modal-cards-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   }
 </style>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
 </head>
 <body>
 
@@ -446,7 +544,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#contact" class="nav-cta">Get Started →</a>
+    <a href="javascript:void(0)" onclick="openProjectModal()" class="nav-cta">Get Started →</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -465,7 +563,7 @@
       <h1>We build software.<br>We find <em>talent.</em></h1>
       <p class="hero-sub">IT Strings is a technology company that does two things well: we build digital products (mobile apps, e-commerce, AI automation) and we place specialized Cloud & AI engineers into teams that need them.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-hero">Start a Project →</a>
+        <a href="javascript:void(0)" onclick="openProjectModal()" class="btn-hero">Start a Project →</a>
         <a href="#services" class="btn-hero-ghost">Explore Services</a>
       </div>
       <div class="hero-stats">
@@ -843,6 +941,7 @@
       <div class="svc-tags"><span class="svc-tag">Zero-Trust</span><span class="svc-tag">CSPM</span><span class="svc-tag">SOC 2</span><span class="svc-tag">ISO 27001</span></div>
     </div>
   </div>
+  <p style="margin-top:28px;text-align:center;font-size:14px;color:var(--muted);">Are you a Cloud or AI engineer? <a href="javascript:void(0)" onclick="openCandidateModal()" style="color:var(--blue);font-weight:600;text-decoration:none;">Join our talent network →</a></p>
 </section>
 
 <!-- CONSULTING STATS -->
@@ -1005,12 +1104,12 @@
     <div class="cta-card">
       <h3>Need a technology solution?</h3>
       <p>Tell us what you're trying to build. We'll get on a call, figure out scope, and give you a straight answer on what it takes.</p>
-      <a href="mailto:contact@itstrings.com" class="btn-white">Start a Project →</a>
+      <a href="javascript:void(0)" onclick="openProjectModal()" class="btn-white">Start a Project →</a>
     </div>
     <div class="cta-card">
       <h3>Need expert talent?</h3>
       <p>Share the role, the tech stack, and what "good" looks like. We'll send you a shortlist of people who fit — usually within a couple of days.</p>
-      <a href="mailto:contact@itstrings.com" class="btn-white">Hire Talent →</a>
+      <a href="javascript:void(0)" onclick="openTalentModal()" class="btn-white">Hire Talent →</a>
     </div>
   </div>
 </div>
@@ -1057,7 +1156,7 @@
         <li><a href="#about">About Us</a></li>
         <li><a href="#work">Our Work</a></li>
         <li><a href="#industries">Industries</a></li>
-        <li><a href="mailto:contact@itstrings.com">For Talent</a></li>
+        <li><a href="javascript:void(0)" onclick="openCandidateModal()">For Talent</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="mailto:contact@itstrings.com">contact@itstrings.com</a></li>
       </ul>
@@ -1095,5 +1194,414 @@
     document.getElementById('hamburger').classList.toggle('active');
   });
 </script>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- MODALS                                      -->
+<!-- ════════════════════════════════════════════ -->
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-box">
+    <div class="modal-progress"><div class="modal-progress-fill blue" id="projProgress" style="width:33%"></div></div>
+    <button class="modal-close" onclick="closeModal('projectModal')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div id="projSteps">
+      <!-- Step 1 -->
+      <div class="modal-step active" data-step="1">
+        <div class="modal-header"><h3>What do you need?</h3><p>Pick the service that fits best.</p></div>
+        <div class="modal-body">
+          <div class="modal-cards-grid" id="projServiceCards">
+            <div class="modal-card" data-val="Mobile App" onclick="selectCard(this,'projServiceCards')"><div class="modal-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></div><div class="modal-card-label">Mobile App</div></div>
+            <div class="modal-card" data-val="AI Automation" onclick="selectCard(this,'projServiceCards')"><div class="modal-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="modal-card-label">AI Automation</div></div>
+            <div class="modal-card" data-val="E-Commerce" onclick="selectCard(this,'projServiceCards')"><div class="modal-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><div class="modal-card-label">E-Commerce</div></div>
+            <div class="modal-card" data-val="Chatbot / Voice Agent" onclick="selectCard(this,'projServiceCards')"><div class="modal-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="modal-card-label">Chatbot / Voice</div></div>
+            <div class="modal-card" data-val="Agentic AI" onclick="selectCard(this,'projServiceCards')"><div class="modal-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M16 14H8a4 4 0 0 0-4 4v2h16v-2a4 4 0 0 0-4-4z"/></svg></div><div class="modal-card-label">Agentic AI</div></div>
+            <div class="modal-card" data-val="Other / Not Sure" onclick="selectCard(this,'projServiceCards')"><div class="modal-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="modal-card-label">Other / Not Sure</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="modal-step" data-step="2">
+        <div class="modal-header"><h3>Tell us more.</h3><p>Anything you can share helps us scope faster.</p></div>
+        <div class="modal-body">
+          <div class="modal-field"><label>What are you looking to build?</label><textarea class="modal-textarea" id="projDesc" placeholder="Describe your project, goals, or problem to solve..."></textarea></div>
+          <div class="modal-field"><label>Timeline</label><select class="modal-select" id="projTimeline"><option value="">No rush / flexible</option><option value="ASAP">ASAP</option><option value="1-2 months">1-2 months</option><option value="3-6 months">3-6 months</option><option value="6+ months">6+ months</option></select></div>
+          <div class="modal-field"><label>Budget range</label><select class="modal-select" id="projBudget"><option value="">Not sure yet</option><option value="Under $10k">Under $10k</option><option value="$10k-$25k">$10k-$25k</option><option value="$25k-$50k">$25k-$50k</option><option value="$50k-$100k">$50k-$100k</option><option value="$100k+">$100k+</option></select></div>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="modal-step" data-step="3">
+        <div class="modal-header"><h3>How do we reach you?</h3></div>
+        <div class="modal-body">
+          <div class="modal-field"><label>Name *</label><input class="modal-input" id="projName" placeholder="Your name" required></div>
+          <div class="modal-field"><label>Email *</label><input class="modal-input" id="projEmail" type="email" placeholder="you@company.com" required></div>
+          <div class="modal-field"><label>Company</label><input class="modal-input" id="projCompany" placeholder="Company name (optional)"></div>
+          <div class="modal-field"><label>Phone</label><input class="modal-input" id="projPhone" placeholder="Phone (optional)"></div>
+        </div>
+      </div>
+      <!-- Success -->
+      <div class="modal-step" data-step="success">
+        <div class="modal-success">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#22c55e" stroke-width="2.5"/><polyline points="15 25 21 31 33 19" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>We got your request.</h3>
+          <p>We'll review your project details and get back to you within one business day.</p>
+          <button class="modal-btn-primary" onclick="closeModal('projectModal')">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="projFooter">
+      <button class="modal-btn-back" id="projBack" onclick="projNav(-1)" style="opacity:0;pointer-events:none;">Back</button>
+      <button class="modal-btn-primary" id="projNext" disabled onclick="projNav(1)">Choose one above</button>
+    </div>
+  </div>
+</div>
+
+<!-- TALENT MODAL -->
+<div class="modal-overlay" id="talentModal">
+  <div class="modal-box">
+    <div class="modal-progress"><div class="modal-progress-fill blue" id="talProgress" style="width:50%"></div></div>
+    <button class="modal-close" onclick="closeModal('talentModal')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div id="talSteps">
+      <!-- Step 1 -->
+      <div class="modal-step active" data-step="1">
+        <div class="modal-header"><h3>What role are you hiring for?</h3><p>Select the specialty and engagement type.</p></div>
+        <div class="modal-body">
+          <div class="modal-cards-grid" id="talRoleCards">
+            <div class="modal-card" data-val="Cloud Architect" onclick="selectCard(this,'talRoleCards')"><div class="modal-card-label">Cloud Architect</div></div>
+            <div class="modal-card" data-val="ML / AI Engineer" onclick="selectCard(this,'talRoleCards')"><div class="modal-card-label">ML / AI Engineer</div></div>
+            <div class="modal-card" data-val="GenAI / LLM Eng" onclick="selectCard(this,'talRoleCards')"><div class="modal-card-label">GenAI / LLM</div></div>
+            <div class="modal-card" data-val="DevSecOps" onclick="selectCard(this,'talRoleCards')"><div class="modal-card-label">DevSecOps</div></div>
+            <div class="modal-card" data-val="Data Engineer" onclick="selectCard(this,'talRoleCards')"><div class="modal-card-label">Data Engineer</div></div>
+            <div class="modal-card" data-val="Cloud Security" onclick="selectCard(this,'talRoleCards')"><div class="modal-card-label">Cloud Security</div></div>
+          </div>
+          <div class="modal-section-label" style="margin-top:20px;">Contract type</div>
+          <div class="modal-pills" id="talContractPills">
+            <div class="modal-pill" data-val="Contract" onclick="selectPill(this,'talContractPills')">Contract</div>
+            <div class="modal-pill" data-val="Full-Time" onclick="selectPill(this,'talContractPills')">Full-Time</div>
+            <div class="modal-pill" data-val="Contract-to-Hire" onclick="selectPill(this,'talContractPills')">Contract-to-Hire</div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="modal-step" data-step="2">
+        <div class="modal-header"><h3>Contact details.</h3></div>
+        <div class="modal-body">
+          <div class="modal-field"><label>Name *</label><input class="modal-input" id="talName" placeholder="Your name" required></div>
+          <div class="modal-field"><label>Company *</label><input class="modal-input" id="talCompany" placeholder="Company name" required></div>
+          <div class="modal-field"><label>Email *</label><input class="modal-input" id="talEmail" type="email" placeholder="you@company.com" required></div>
+          <div class="modal-field"><label>Phone</label><input class="modal-input" id="talPhone" placeholder="Phone (optional)"></div>
+          <div class="modal-field"><label>Tech stack / notes</label><textarea class="modal-textarea" id="talStack" placeholder="e.g. AWS, Kubernetes, Python, specific certifications..."></textarea></div>
+        </div>
+      </div>
+      <!-- Success -->
+      <div class="modal-step" data-step="success">
+        <div class="modal-success">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#22c55e" stroke-width="2.5"/><polyline points="15 25 21 31 33 19" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>Request received.</h3>
+          <p>We'll match your role with our talent network and get back with a shortlist — usually within 48 hours.</p>
+          <button class="modal-btn-primary" onclick="closeModal('talentModal')">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="talFooter">
+      <button class="modal-btn-back" id="talBack" onclick="talNav(-1)" style="opacity:0;pointer-events:none;">Back</button>
+      <button class="modal-btn-primary" id="talNext" disabled onclick="talNav(1)">Choose a role above</button>
+    </div>
+  </div>
+</div>
+
+<!-- CANDIDATE MODAL -->
+<div class="modal-overlay" id="candidateModal">
+  <div class="modal-box">
+    <div class="modal-progress"><div class="modal-progress-fill green" id="candProgress" style="width:33%"></div></div>
+    <button class="modal-close" onclick="closeModal('candidateModal')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div id="candSteps">
+      <!-- Step 1 -->
+      <div class="modal-step active" data-step="1">
+        <div class="modal-header"><h3>What's your specialty?</h3><p>We'll match you with relevant opportunities.</p></div>
+        <div class="modal-body">
+          <div class="modal-cards-grid" id="candRoleCards">
+            <div class="modal-card" data-val="Cloud Architect" onclick="selectCard(this,'candRoleCards')"><div class="modal-card-label">Cloud Architect</div></div>
+            <div class="modal-card" data-val="ML / AI Engineer" onclick="selectCard(this,'candRoleCards')"><div class="modal-card-label">ML / AI Engineer</div></div>
+            <div class="modal-card" data-val="GenAI / LLM Eng" onclick="selectCard(this,'candRoleCards')"><div class="modal-card-label">GenAI / LLM</div></div>
+            <div class="modal-card" data-val="DevSecOps" onclick="selectCard(this,'candRoleCards')"><div class="modal-card-label">DevSecOps</div></div>
+            <div class="modal-card" data-val="Data Engineer" onclick="selectCard(this,'candRoleCards')"><div class="modal-card-label">Data Engineer</div></div>
+            <div class="modal-card" data-val="Cloud Security" onclick="selectCard(this,'candRoleCards')"><div class="modal-card-label">Cloud Security</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="modal-step" data-step="2">
+        <div class="modal-header"><h3>Your background.</h3></div>
+        <div class="modal-body">
+          <div class="modal-section-label">Experience</div>
+          <div class="modal-pills" id="candExpPills">
+            <div class="modal-pill" data-val="1-3 years" onclick="selectPill(this,'candExpPills')">1-3 years</div>
+            <div class="modal-pill" data-val="4-6 years" onclick="selectPill(this,'candExpPills')">4-6 years</div>
+            <div class="modal-pill" data-val="7-10 years" onclick="selectPill(this,'candExpPills')">7-10 years</div>
+            <div class="modal-pill" data-val="10+ years" onclick="selectPill(this,'candExpPills')">10+ years</div>
+          </div>
+          <div class="modal-section-label">Work preference</div>
+          <div class="modal-pills" id="candWorkPills">
+            <div class="modal-pill" data-val="Remote" onclick="selectPill(this,'candWorkPills')">Remote</div>
+            <div class="modal-pill" data-val="Hybrid" onclick="selectPill(this,'candWorkPills')">Hybrid</div>
+            <div class="modal-pill" data-val="On-site" onclick="selectPill(this,'candWorkPills')">On-site</div>
+            <div class="modal-pill" data-val="Open to all" onclick="selectPill(this,'candWorkPills')">Open to all</div>
+          </div>
+          <div class="modal-section-label">Open to</div>
+          <div class="modal-pills" id="candTypePills">
+            <div class="modal-pill" data-val="Contract" onclick="selectPill(this,'candTypePills')">Contract</div>
+            <div class="modal-pill" data-val="Full-Time" onclick="selectPill(this,'candTypePills')">Full-Time</div>
+            <div class="modal-pill" data-val="Both" onclick="selectPill(this,'candTypePills')">Both</div>
+          </div>
+          <div class="modal-field" style="margin-top:20px;"><label>Tech stack</label><textarea class="modal-textarea" id="candStack" placeholder="e.g. AWS, Python, Kubernetes, Terraform..."></textarea></div>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="modal-step" data-step="3">
+        <div class="modal-header"><h3>Your details.</h3></div>
+        <div class="modal-body">
+          <div class="modal-field"><label>Name *</label><input class="modal-input" id="candName" placeholder="Your name" required></div>
+          <div class="modal-field"><label>Email *</label><input class="modal-input" id="candEmail" type="email" placeholder="you@email.com" required></div>
+          <div class="modal-field"><label>Location</label><input class="modal-input" id="candLocation" placeholder="City, State or Country"></div>
+          <div class="modal-field"><label>LinkedIn</label><input class="modal-input" id="candLinkedin" placeholder="linkedin.com/in/yourprofile"></div>
+          <div class="modal-field">
+            <label>Resume</label>
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('resumeInput').click()">
+              <div class="uz-label">Drop your resume here or click to browse</div>
+              <p>PDF, DOC, or DOCX — max 5MB</p>
+            </div>
+            <input type="file" id="resumeInput" accept=".pdf,.doc,.docx" style="display:none" onchange="handleResumeFile(this.files[0])">
+            <div class="upload-progress" id="uploadProgress"><div class="upload-progress-fill" id="uploadProgressFill"></div></div>
+            <div class="upload-file-name" id="uploadFileName"></div>
+            <div class="upload-error" id="uploadError"></div>
+            <div class="modal-or">or</div>
+            <input class="modal-input" id="candResumeLink" placeholder="Paste a link to your resume">
+          </div>
+        </div>
+      </div>
+      <!-- Success -->
+      <div class="modal-step" data-step="success">
+        <div class="modal-success">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#22c55e" stroke-width="2.5"/><polyline points="15 25 21 31 33 19" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>You're in the network.</h3>
+          <p>We'll reach out when we have opportunities that match your profile.</p>
+          <button class="modal-btn-primary green" onclick="closeModal('candidateModal')">Close</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="candFooter">
+      <button class="modal-btn-back" id="candBack" onclick="candNav(-1)" style="opacity:0;pointer-events:none;">Back</button>
+      <button class="modal-btn-primary green" id="candNext" disabled onclick="candNav(1)">Choose a specialty above</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL JAVASCRIPT -->
+<script>
+  // Firebase init
+  let db = null, storage = null;
+  try {
+    const firebaseConfig = {
+      apiKey: "AIzaSyDAW_7QrUU06y-RHSaKLwjo-02-bXGIWho",
+      authDomain: "itstrings-2026.firebaseapp.com",
+      projectId: "itstrings-2026",
+      storageBucket: "itstrings-2026.firebasestorage.app",
+      messagingSenderId: "69953677541",
+      appId: "1:69953677541:web:c3a8dcc5601b27b617cc0c",
+      measurementId: "G-1R3JEQ52PQ"
+    };
+    if (firebaseConfig.apiKey) {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+      storage = firebase.storage();
+    }
+  } catch(e) { console.warn('Firebase not configured, running in demo mode.'); }
+
+  // Shared helpers
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function selectCard(el, gridId) {
+    document.querySelectorAll('#'+gridId+' .modal-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    updateButtons();
+  }
+  function selectPill(el, groupId) {
+    document.querySelectorAll('#'+groupId+' .modal-pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+  }
+  function getCardVal(gridId) { const a = document.querySelector('#'+gridId+' .modal-card.active'); return a ? a.dataset.val : null; }
+  function getPillVal(groupId) { const a = document.querySelector('#'+groupId+' .modal-pill.active'); return a ? a.dataset.val : null; }
+  function showStep(container, step) {
+    document.querySelectorAll('#'+container+' .modal-step').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector('#'+container+' .modal-step[data-step="'+step+'"]');
+    if (target) target.classList.add('active');
+  }
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.classList.add('modal-open'); }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.classList.remove('modal-open');
+    setTimeout(() => resetModal(id), 300);
+  }
+
+  // Close on backdrop click / Escape
+  document.querySelectorAll('.modal-overlay').forEach(o => {
+    o.addEventListener('click', e => { if (e.target === o) closeModal(o.id); });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(o => closeModal(o.id));
+  });
+
+  // ── PROJECT MODAL ──
+  let projStep = 1;
+  function openProjectModal() { resetModal('projectModal'); openModal('projectModal'); }
+  function projNav(dir) {
+    if (dir === 1 && projStep === 3) { submitProject(); return; }
+    projStep = Math.max(1, Math.min(3, projStep + dir));
+    showStep('projSteps', projStep);
+    document.getElementById('projProgress').style.width = (projStep * 33.33) + '%';
+    document.getElementById('projBack').style.opacity = projStep === 1 ? '0' : '1';
+    document.getElementById('projBack').style.pointerEvents = projStep === 1 ? 'none' : 'auto';
+    updateButtons();
+  }
+  async function submitProject() {
+    const data = {
+      type: 'project', service: getCardVal('projServiceCards'),
+      description: document.getElementById('projDesc').value || null,
+      timeline: document.getElementById('projTimeline').value || null,
+      budget: document.getElementById('projBudget').value || null,
+      name: document.getElementById('projName').value.trim(),
+      company: document.getElementById('projCompany').value.trim() || null,
+      email: document.getElementById('projEmail').value.trim(),
+      phone: document.getElementById('projPhone').value.trim() || null,
+      source: 'itstrings.com', submittedAt: new Date().toISOString(), status: 'new'
+    };
+    if (db) { await db.collection('leads').add(data); } else { console.log('[DEMO] Would save to leads:', data); }
+    showStep('projSteps', 'success');
+    document.getElementById('projFooter').style.display = 'none';
+  }
+
+  // ── TALENT MODAL ──
+  let talStep = 1;
+  function openTalentModal() { resetModal('talentModal'); openModal('talentModal'); }
+  function talNav(dir) {
+    if (dir === 1 && talStep === 2) { submitTalent(); return; }
+    talStep = Math.max(1, Math.min(2, talStep + dir));
+    showStep('talSteps', talStep);
+    document.getElementById('talProgress').style.width = (talStep * 50) + '%';
+    document.getElementById('talBack').style.opacity = talStep === 1 ? '0' : '1';
+    document.getElementById('talBack').style.pointerEvents = talStep === 1 ? 'none' : 'auto';
+    updateButtons();
+  }
+  async function submitTalent() {
+    const data = {
+      type: 'staffing', role: getCardVal('talRoleCards'),
+      contractType: getPillVal('talContractPills') || null,
+      techStack: document.getElementById('talStack').value.trim() || null,
+      name: document.getElementById('talName').value.trim(),
+      company: document.getElementById('talCompany').value.trim(),
+      email: document.getElementById('talEmail').value.trim(),
+      phone: document.getElementById('talPhone').value.trim() || null,
+      source: 'itstrings.com', submittedAt: new Date().toISOString(), status: 'new'
+    };
+    if (db) { await db.collection('leads').add(data); } else { console.log('[DEMO] Would save to leads:', data); }
+    showStep('talSteps', 'success');
+    document.getElementById('talFooter').style.display = 'none';
+  }
+
+  // ── CANDIDATE MODAL ──
+  let candStep = 1, uploadedResumeUrl = null;
+  function openCandidateModal() { resetModal('candidateModal'); openModal('candidateModal'); }
+  function candNav(dir) {
+    if (dir === 1 && candStep === 3) { submitCandidate(); return; }
+    candStep = Math.max(1, Math.min(3, candStep + dir));
+    showStep('candSteps', candStep);
+    document.getElementById('candProgress').style.width = (candStep * 33.33) + '%';
+    document.getElementById('candBack').style.opacity = candStep === 1 ? '0' : '1';
+    document.getElementById('candBack').style.pointerEvents = candStep === 1 ? 'none' : 'auto';
+    updateButtons();
+  }
+  async function handleResumeFile(file) {
+    const errEl = document.getElementById('uploadError');
+    const progEl = document.getElementById('uploadProgress');
+    const fillEl = document.getElementById('uploadProgressFill');
+    const nameEl = document.getElementById('uploadFileName');
+    errEl.style.display = 'none';
+    if (!file) return;
+    const allowed = ['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!allowed.includes(file.type)) { errEl.textContent = 'Only PDF, DOC, or DOCX files.'; errEl.style.display = 'block'; return; }
+    if (file.size > 5*1024*1024) { errEl.textContent = 'File must be under 5MB.'; errEl.style.display = 'block'; return; }
+    progEl.style.display = 'block'; fillEl.style.width = '0%';
+    const fname = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    if (storage) {
+      try {
+        const ref = storage.ref('resumes/' + fname);
+        const task = ref.put(file, { customMetadata: { candidateEmail: document.getElementById('candEmail').value || 'unknown' } });
+        task.on('state_changed', snap => { fillEl.style.width = ((snap.bytesTransferred/snap.totalBytes)*100)+'%'; });
+        await task;
+        uploadedResumeUrl = await ref.getDownloadURL();
+        nameEl.textContent = file.name + ' uploaded'; nameEl.style.display = 'block';
+      } catch(e) { errEl.textContent = 'Upload failed. You can paste a link instead.'; errEl.style.display = 'block'; progEl.style.display = 'none'; }
+    } else {
+      await new Promise(r => { let p=0; const i=setInterval(()=>{ p+=25; fillEl.style.width=p+'%'; if(p>=100){clearInterval(i);r();}},250); });
+      uploadedResumeUrl = 'https://demo.example.com/resumes/'+fname;
+      nameEl.textContent = file.name + ' (demo)'; nameEl.style.display = 'block';
+      console.log('[DEMO] Would upload resume:', fname);
+    }
+  }
+  // Drag and drop
+  const uz = document.getElementById('uploadZone');
+  if (uz) {
+    uz.addEventListener('dragover', e => { e.preventDefault(); uz.classList.add('dragover'); });
+    uz.addEventListener('dragleave', () => uz.classList.remove('dragover'));
+    uz.addEventListener('drop', e => { e.preventDefault(); uz.classList.remove('dragover'); if(e.dataTransfer.files[0]) handleResumeFile(e.dataTransfer.files[0]); });
+  }
+  async function submitCandidate() {
+    const data = {
+      type: 'candidate', role: getCardVal('candRoleCards'),
+      experience: getPillVal('candExpPills') || null,
+      workPreference: getPillVal('candWorkPills') || null,
+      openTo: getPillVal('candTypePills') || null,
+      stack: document.getElementById('candStack').value.trim() || null,
+      name: document.getElementById('candName').value.trim(),
+      email: document.getElementById('candEmail').value.trim(),
+      location: document.getElementById('candLocation').value.trim() || null,
+      linkedin: document.getElementById('candLinkedin').value.trim() || null,
+      resumeLink: document.getElementById('candResumeLink').value.trim() || null,
+      resumeFile: uploadedResumeUrl || null,
+      source: 'itstrings.com', submittedAt: new Date().toISOString(), status: 'new'
+    };
+    if (db) { await db.collection('candidates').add(data); } else { console.log('[DEMO] Would save to candidates:', data); }
+    showStep('candSteps', 'success');
+    document.getElementById('candFooter').style.display = 'none';
+  }
+
+  // ── BUTTON STATE ──
+  function updateButtons() {
+    // Project
+    const pn = document.getElementById('projNext');
+    if (projStep === 1) { const v = getCardVal('projServiceCards'); pn.disabled = !v; pn.textContent = v ? 'Continue' : 'Choose one above'; }
+    else if (projStep === 2) { pn.disabled = false; pn.textContent = 'Continue'; }
+    else if (projStep === 3) { const ok = document.getElementById('projName').value.trim() && emailRe.test(document.getElementById('projEmail').value.trim()); pn.disabled = !ok; pn.textContent = 'Send Request'; }
+    // Talent
+    const tn = document.getElementById('talNext');
+    if (talStep === 1) { const v = getCardVal('talRoleCards'); tn.disabled = !v; tn.textContent = v ? 'Continue' : 'Choose a role above'; }
+    else if (talStep === 2) { const ok = document.getElementById('talName').value.trim() && document.getElementById('talCompany').value.trim() && emailRe.test(document.getElementById('talEmail').value.trim()); tn.disabled = !ok; tn.textContent = 'Send Request'; }
+    // Candidate
+    const cn = document.getElementById('candNext');
+    if (candStep === 1) { const v = getCardVal('candRoleCards'); cn.disabled = !v; cn.textContent = v ? 'Continue' : 'Choose a specialty above'; }
+    else if (candStep === 2) { cn.disabled = false; cn.textContent = 'Continue'; }
+    else if (candStep === 3) { const ok = document.getElementById('candName').value.trim() && emailRe.test(document.getElementById('candEmail').value.trim()); cn.disabled = !ok; cn.textContent = 'Join Network'; }
+  }
+  // Live validation on input fields
+  document.querySelectorAll('.modal-input, .modal-textarea').forEach(el => el.addEventListener('input', updateButtons));
+
+  // ── RESET ──
+  function resetModal(id) {
+    if (id === 'projectModal') { projStep = 1; showStep('projSteps',1); document.getElementById('projProgress').style.width='33%'; document.getElementById('projBack').style.opacity='0'; document.getElementById('projBack').style.pointerEvents='none'; document.getElementById('projFooter').style.display='flex'; document.querySelectorAll('#projServiceCards .modal-card').forEach(c=>c.classList.remove('active')); ['projDesc','projName','projEmail','projCompany','projPhone'].forEach(i=>{const e=document.getElementById(i);if(e)e.value='';}); document.getElementById('projTimeline').selectedIndex=0; document.getElementById('projBudget').selectedIndex=0; }
+    if (id === 'talentModal') { talStep = 1; showStep('talSteps',1); document.getElementById('talProgress').style.width='50%'; document.getElementById('talBack').style.opacity='0'; document.getElementById('talBack').style.pointerEvents='none'; document.getElementById('talFooter').style.display='flex'; document.querySelectorAll('#talRoleCards .modal-card').forEach(c=>c.classList.remove('active')); document.querySelectorAll('#talContractPills .modal-pill').forEach(p=>p.classList.remove('active')); ['talName','talCompany','talEmail','talPhone','talStack'].forEach(i=>{const e=document.getElementById(i);if(e)e.value='';}); }
+    if (id === 'candidateModal') { candStep = 1; uploadedResumeUrl = null; showStep('candSteps',1); document.getElementById('candProgress').style.width='33%'; document.getElementById('candBack').style.opacity='0'; document.getElementById('candBack').style.pointerEvents='none'; document.getElementById('candFooter').style.display='flex'; document.querySelectorAll('#candRoleCards .modal-card').forEach(c=>c.classList.remove('active')); ['candExpPills','candWorkPills','candTypePills'].forEach(g=>document.querySelectorAll('#'+g+' .modal-pill').forEach(p=>p.classList.remove('active'))); ['candStack','candName','candEmail','candLocation','candLinkedin','candResumeLink'].forEach(i=>{const e=document.getElementById(i);if(e)e.value='';}); document.getElementById('uploadProgress').style.display='none'; document.getElementById('uploadFileName').style.display='none'; document.getElementById('uploadError').style.display='none'; document.getElementById('resumeInput').value=''; }
+    updateButtons();
+  }
+</script>
+
 </body>
 </html>
