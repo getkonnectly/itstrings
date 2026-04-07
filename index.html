@@ -1463,6 +1463,8 @@
     updateButtons();
   }
   async function submitProject() {
+    const btn = document.getElementById('projNext');
+    btn.disabled = true; btn.textContent = 'Sending...';
     const data = {
       type: 'project', service: getCardVal('projServiceCards'),
       description: document.getElementById('projDesc').value || null,
@@ -1474,9 +1476,11 @@
       phone: document.getElementById('projPhone').value.trim() || null,
       source: 'itstrings.com', submittedAt: new Date().toISOString(), status: 'new'
     };
-    if (db) { await db.collection('leads').add(data); } else { console.log('[DEMO] Would save to leads:', data); }
-    showStep('projSteps', 'success');
-    document.getElementById('projFooter').style.display = 'none';
+    try {
+      if (db) { await db.collection('leads').add(data); } else { console.log('[DEMO] Would save to leads:', data); }
+      showStep('projSteps', 'success');
+      document.getElementById('projFooter').style.display = 'none';
+    } catch(e) { console.error('Submit error:', e); btn.disabled = false; btn.textContent = 'Send Request'; alert('Something went wrong. Please try again or email contact@itstrings.com.'); }
   }
 
   // ── TALENT MODAL ──
@@ -1492,6 +1496,8 @@
     updateButtons();
   }
   async function submitTalent() {
+    const btn = document.getElementById('talNext');
+    btn.disabled = true; btn.textContent = 'Sending...';
     const data = {
       type: 'staffing', role: getCardVal('talRoleCards'),
       contractType: getPillVal('talContractPills') || null,
@@ -1502,9 +1508,11 @@
       phone: document.getElementById('talPhone').value.trim() || null,
       source: 'itstrings.com', submittedAt: new Date().toISOString(), status: 'new'
     };
-    if (db) { await db.collection('leads').add(data); } else { console.log('[DEMO] Would save to leads:', data); }
-    showStep('talSteps', 'success');
-    document.getElementById('talFooter').style.display = 'none';
+    try {
+      if (db) { await db.collection('leads').add(data); } else { console.log('[DEMO] Would save to leads:', data); }
+      showStep('talSteps', 'success');
+      document.getElementById('talFooter').style.display = 'none';
+    } catch(e) { console.error('Submit error:', e); btn.disabled = false; btn.textContent = 'Send Request'; alert('Something went wrong. Please try again or email contact@itstrings.com.'); }
   }
 
   // ── CANDIDATE MODAL ──
@@ -1539,7 +1547,7 @@
         await task;
         uploadedResumeUrl = await ref.getDownloadURL();
         nameEl.textContent = file.name + ' uploaded'; nameEl.style.display = 'block';
-      } catch(e) { errEl.textContent = 'Upload failed. You can paste a link instead.'; errEl.style.display = 'block'; progEl.style.display = 'none'; }
+      } catch(e) { console.error('Upload error:', e); errEl.textContent = 'Upload failed. You can paste a link instead.'; errEl.style.display = 'block'; progEl.style.display = 'none'; }
     } else {
       await new Promise(r => { let p=0; const i=setInterval(()=>{ p+=25; fillEl.style.width=p+'%'; if(p>=100){clearInterval(i);r();}},250); });
       uploadedResumeUrl = 'https://demo.example.com/resumes/'+fname;
@@ -1555,6 +1563,8 @@
     uz.addEventListener('drop', e => { e.preventDefault(); uz.classList.remove('dragover'); if(e.dataTransfer.files[0]) handleResumeFile(e.dataTransfer.files[0]); });
   }
   async function submitCandidate() {
+    const btn = document.getElementById('candNext');
+    btn.disabled = true; btn.textContent = 'Sending...';
     const data = {
       type: 'candidate', role: getCardVal('candRoleCards'),
       experience: getPillVal('candExpPills') || null,
@@ -1569,9 +1579,11 @@
       resumeFile: uploadedResumeUrl || null,
       source: 'itstrings.com', submittedAt: new Date().toISOString(), status: 'new'
     };
-    if (db) { await db.collection('candidates').add(data); } else { console.log('[DEMO] Would save to candidates:', data); }
-    showStep('candSteps', 'success');
-    document.getElementById('candFooter').style.display = 'none';
+    try {
+      if (db) { await db.collection('candidates').add(data); } else { console.log('[DEMO] Would save to candidates:', data); }
+      showStep('candSteps', 'success');
+      document.getElementById('candFooter').style.display = 'none';
+    } catch(e) { console.error('Submit error:', e); btn.disabled = false; btn.textContent = 'Join Network'; alert('Something went wrong. Please try again or email contact@itstrings.com.'); }
   }
 
   // ── BUTTON STATE ──

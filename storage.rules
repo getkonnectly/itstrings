@@ -6,7 +6,7 @@ service firebase.storage {
                    && (request.resource.contentType == 'application/pdf'
                        || request.resource.contentType == 'application/msword'
                        || request.resource.contentType.matches('application/vnd.openxmlformats.*'));
-      allow read: if false;
+      allow read: if true;
     }
   }
 }
