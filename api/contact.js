@@ -25,11 +25,13 @@ export default async function handler(req, res) {
   const apiKey = process.env.HUBSPOT_API_KEY;
   if (!apiKey) {
     console.error('HUBSPOT_API_KEY environment variable is not set');
-    return res.status(500).json({ success: false, error: 'Server configuration error' });
+    return res.status(500).json({ success: false, error: 'HUBSPOT_API_KEY environment variable is not set on the server' });
   }
 
   try {
-    const { name, email, phone, company, message, inquiryType } = req.body;
+    // Vercel normally parses JSON automatically, but handle string bodies just in case
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+    const { name, email, phone, company, message, inquiryType } = body;
 
     if (!email || !name) {
       return res.status(400).json({ success: false, error: 'Name and email are required' });
@@ -52,15 +54,42 @@ export default async function handler(req, res) {
 
     let contactId;
 
-    // Try to create the contact first
-    const createRes = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ properties: contactProperties }),
-    });
+    // Helper: call HubSpot contact create, retry without unknown properties if rejected
+    async function createContact(props) {
+      const r = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ properties: props }),
+      });
+      return r;
+    }
+
+    async function updateContact(id, props) {
+      return fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ properties: props }),
+      });
+    }
+
+    // Try to create the contact
+    let createRes = await createContact(contactProperties);
+
+    // If HubSpot rejects because of an unknown property (e.g. inquiry_type not created yet),
+    // strip custom props and retry with core properties only.
+    if (createRes.status === 400 && contactProperties.inquiry_type) {
+      const errBody = await createRes.text();
+      console.warn('Contact create rejected, retrying without inquiry_type:', errBody);
+      const fallbackProps = { ...contactProperties };
+      delete fallbackProps.inquiry_type;
+      createRes = await createContact(fallbackProps);
+    }
 
     if (createRes.ok) {
       const created = await createRes.json();
@@ -71,19 +100,22 @@ export default async function handler(req, res) {
       contactId = conflict.message?.match(/Existing ID:\s*(\d+)/)?.[1];
 
       if (contactId) {
-        await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`, {
-          method: 'PATCH',
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ properties: contactProperties }),
-        });
+        let patchRes = await updateContact(contactId, contactProperties);
+        if (patchRes.status === 400 && contactProperties.inquiry_type) {
+          const fallbackProps = { ...contactProperties };
+          delete fallbackProps.inquiry_type;
+          patchRes = await updateContact(contactId, fallbackProps);
+        }
       }
     } else {
       const errBody = await createRes.text();
       console.error('HubSpot contact create failed:', createRes.status, errBody);
-      return res.status(500).json({ success: false, error: 'Failed to create contact' });
+      return res.status(500).json({
+        success: false,
+        error: 'Failed to create contact',
+        hubspotStatus: createRes.status,
+        hubspotError: errBody,
+      });
     }
 
     // Create a Note with the full message if we have a contactId and message
@@ -122,6 +154,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error('Handler error:', err);
-    return res.status(500).json({ success: false, error: 'Internal server error' });
+    return res.status(500).json({ success: false, error: err.message || 'Internal server error' });
   }
 }
